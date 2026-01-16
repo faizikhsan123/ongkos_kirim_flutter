@@ -7,12 +7,6 @@ import 'package:http/http.dart' as http;
 class HomeController extends GetxController {
   var provinsi = <Province>[].obs;
 
-  @override
-  void onInit() {
-    //ketika pertama kali controller dijalankan jalakna fungsi ini
-    super.onInit();
-  }
-
   Future<List<Province>> ambilProvinsi() async {
     try {
       final url =
