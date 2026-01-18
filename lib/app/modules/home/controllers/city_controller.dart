@@ -5,18 +5,25 @@ import 'package:http/http.dart' as http;
 
 class CityController extends GetxController {
   var kota = <City>[].obs;
-  var id_kota = 0.obs; //untuk menangkap id kota
-  RxBool isHidden = true.obs; //untuk hide jika provinsi sudah dipilih tampilkan kotanya
+  var id_kotaAsal = 0.obs;
+  var id_kotaTujuan = 0.obs;
+  
+  RxBool isHiddenAsal = true.obs; 
+  RxBool isHiddenTujuan = true.obs; 
 
 
-  Future<List<City>> ambilkota() async {
+
+
+  Future<List<City>> ambilkota(String tipe) async { //tambahkan parameter tipe
+   final int id = tipe == 'asal' ? id_kotaAsal.value : id_kotaTujuan.value; //jika tipe asal maka ambil id_kotaAsal, jika tipe tujuan maka ambil id_kotaTujuan
     try {
-      final url = "https://rajaongkir.komerce.id/api/v1/destination/city/$id_kota"; //
+      final url = "https://rajaongkir.komerce.id/api/v1/destination/city/$id"; 
 
       var response = await http.get(
         Uri.parse(url),
-        headers: {"key": "Q83uhfGO932942e09811f078BC1KB3Lm"},
+        headers: {"key": "MLTwqSd1af8061b9d90b70a0FDT6g0kV"},
       );
+    
 
       if (response.statusCode == 200) {
         final datakota = jsonDecode(response.body);

@@ -16,16 +16,14 @@ class HomeController extends GetxController {
         //var untuk http get
         Uri.parse(url),
         headers: {
-          "key": "Q83uhfGO932942e09811f078BC1KB3Lm",
+          "key": "MLTwqSd1af8061b9d90b70a0FDT6g0kV",
         }, //header untuk api key(butuh di api raja ongkir)
       );
-
       if (response.statusCode == 200) {
         //jika statusnya berhasil
         final dataProvinsi = jsonDecode(
           response.body,
         ); //mengubah json string ke bentuk List/Map
-        print(dataProvinsi); //mka hasilnya seperti dibawah
 
         //karena struktur jsonnya seperti ini
         //{"meta":{"message":"Success Get Province","code":200,"status":"success"},"data":[{"id":1,"name":"NUSA TENGGARA BARAT (NTB)"},{"id":2,"name":"MALUKU"},
