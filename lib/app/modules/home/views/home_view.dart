@@ -1,4 +1,5 @@
 import 'package:case_ongkir_getx/app/modules/home/controllers/city_controller.dart';
+import 'package:case_ongkir_getx/app/modules/home/views/widgets/berat.dart';
 import 'package:case_ongkir_getx/app/modules/home/views/widgets/city.dart';
 import 'package:case_ongkir_getx/app/modules/home/views/widgets/province.dart';
 import 'package:flutter/material.dart';
@@ -15,22 +16,19 @@ class HomeView extends GetView<HomeController> {
       appBar: AppBar(title: const Text('HomeView'), centerTitle: true),
       body: Column(
         children: [
-          DropdownProvinsi(
-            tipe: "asal",
-          ), //memannggil constructor tipe dan nilainya  =asal
+          DropdownProvinsi(tipe: "asal"),
           Obx(
             () => cityC.isHiddenAsal.value == false
-                ? DropdownKota(tipe: 'asal') //kotaa asal
+                ? DropdownKota(tipe: 'asal')
                 : Container(),
           ),
-          DropdownProvinsi(
-            tipe: "tujuan",
-          ), //memannggil constructor tipe dan nilainya  =tujuan
+          DropdownProvinsi(tipe: "tujuan"),
           Obx(
             () => cityC.isHiddenTujuan.value == false
-                ? DropdownKota(tipe: 'tujuan') //kotaa tujuan
+                ? DropdownKota(tipe: 'tujuan')
                 : Container(),
           ),
+          BeratBarang() //tambahkan widget berat barang
         ],
       ),
     );
