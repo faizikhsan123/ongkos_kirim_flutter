@@ -11,17 +11,23 @@ class CityController extends GetxController {
   RxBool isHiddenAsal = true.obs; 
   RxBool isHiddenTujuan = true.obs; 
 
+  var idKotaAsalDarivalue = 0.obs; //set id_kotaAsal menjadi 0
+  var idKotaTujuanDarivalue = 0.obs; // set id_kotaTujuan menjadi 0
+
+  var nameKotaAsalDarivalue = ''.obs; //set nama_kotaAsal menjadi ksoong 
+  var nameKotaTujuanDarivalue = ''.obs; //set nama_kotaTujuan menjadi ksoong
 
 
 
-  Future<List<City>> ambilkota(String tipe) async { //tambahkan parameter tipe
-   final int id = tipe == 'asal' ? id_kotaAsal.value : id_kotaTujuan.value; //jika tipe asal maka ambil id_kotaAsal, jika tipe tujuan maka ambil id_kotaTujuan
+
+  Future<List<City>> ambilkota(String tipe) async { 
+   final int id = tipe == 'asal' ? id_kotaAsal.value : id_kotaTujuan.value; 
     try {
       final url = "https://rajaongkir.komerce.id/api/v1/destination/city/$id"; 
 
       var response = await http.get(
         Uri.parse(url),
-        headers: {"key": "MLTwqSd1af8061b9d90b70a0FDT6g0kV"},
+        headers: {"key": "lIpCJXoV4c53a0293d23da868x9tXn3e"},
       );
     
 

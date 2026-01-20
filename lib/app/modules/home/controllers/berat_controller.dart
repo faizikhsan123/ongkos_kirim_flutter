@@ -5,6 +5,9 @@ class ControllerBerat extends GetxController {
   // Dipakai untuk mengambil nilai angka yang diketik user
   late TextEditingController berat;
 
+  
+
+
   // nilai default berat barang (SELALU DISIMPAN DALAM GRAM)
   double beratBarang = 0.0;
 

@@ -1,5 +1,6 @@
 import 'package:case_ongkir_getx/app/modules/home/controllers/city_controller.dart';
 import 'package:case_ongkir_getx/app/modules/home/controllers/home_controller.dart';
+import 'package:case_ongkir_getx/app/modules/home/controllers/kurirController.dart';
 import 'package:case_ongkir_getx/app/modules/home/models/province.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
@@ -8,13 +9,14 @@ import 'package:get/get.dart';
 class DropdownProvinsi extends StatelessWidget {
   DropdownProvinsi({
     Key? key,
-    required this.tipe, //menambahkan constructor tipe
+    required this.tipe, 
   }) : super(key: key);
 
-  final String tipe; //menambahkan variabel tipe
+  final String tipe; 
 
 final cityC = Get.find<CityController>();
 final homeC = Get.find<HomeController>();
+ final kurirC = Get.put(Kurircontroller());
 
   @override
   Widget build(BuildContext context) {
@@ -29,18 +31,25 @@ final homeC = Get.find<HomeController>();
 
         onChanged: (Province? value) {
           if (value != null) {
-            if (tipe == 'asal') { //jikka tipenya asal
-              cityC.isHiddenAsal.value = false; //menampilkan dropdown kota asal
-              cityC.id_kotaAsal.value = value.id; //menyimpan id kota asal
-            } else if (tipe == 'tujuan') { //jika tipenya tujuan
-              cityC.isHiddenTujuan.value = false; //menampilkan dropdown kota tujuan
-              cityC.id_kotaTujuan.value = value.id; //menyimpan id kota tujuan
+            if (tipe == 'asal') { 
+               cityC.isHiddenAsal.value = false;
+               cityC.id_kotaAsal.value = value.id; //set id_kotaAsal menjadi value.id 
+             
+            } else if (tipe == 'tujuan') { 
+              cityC.isHiddenTujuan.value = false; 
+              cityC.id_kotaTujuan.value = value.id; //set id_kotaTujuan menjadi value.id
+          
             }
-          }else if (value == null) { //jika tombol clear X  ditekan
-            if (tipe == 'asal') { //jika tipenya asal
-              cityC.isHiddenAsal.value = true; //menyembunyikan dropdown kota asal
-            } else if (tipe == 'tujuan') { //jika tipenya tujuan
-              cityC.isHiddenTujuan.value = true; //menyembunyikan dropdown kota asal
+
+          
+            
+          }else if (value == null) { 
+            if (tipe == 'asal') { 
+              cityC.isHiddenAsal.value = true; 
+              cityC.id_kotaAsal.value = 0; //set id_kotaAsal menjadi 0
+            } else if (tipe == 'tujuan') { 
+              cityC.isHiddenTujuan.value = true; 
+              cityC.id_kotaTujuan.value = 0; //set id_kotaTujuan menjadi 0
               
             }
 
@@ -49,7 +58,7 @@ final homeC = Get.find<HomeController>();
 
         clearButtonProps: ClearButtonProps(
           isVisible: true,
-        ), //menambahkan tombol clear
+        ), 
 
         popupProps: PopupProps.menu(
           showSearchBox: true,
@@ -67,7 +76,7 @@ final homeC = Get.find<HomeController>();
           dropdownSearchDecoration: InputDecoration(
             hintText: tipe == 'asal'
                 ? "Pilih Provinsi Asal"
-                : "Pilih Provinsi Tujuan", //jika tipe = asal maka tampilkan "Pilih Provinsi Asal", jika tipe = tujuan maka tampilkan "Pilih Provinsi Tujuan"
+                : "Pilih Provinsi Tujuan", 
             border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
           ),
         ),

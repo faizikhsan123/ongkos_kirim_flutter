@@ -1,4 +1,5 @@
 import 'package:case_ongkir_getx/app/modules/home/controllers/berat_controller.dart';
+import 'package:case_ongkir_getx/app/modules/home/controllers/kurirController.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -6,6 +7,8 @@ import 'package:get/get.dart';
 class BeratBarang extends StatelessWidget {
   // inject controller
   final BeratC = Get.put(ControllerBerat());
+  final kurirC = Get.put(Kurircontroller());
+
 
   @override
   Widget build(BuildContext context) {
@@ -21,17 +24,19 @@ class BeratBarang extends StatelessWidget {
             child: TextField(
               controller: BeratC.berat,
               keyboardType: TextInputType.number,
-              decoration: const InputDecoration(
+              decoration:  InputDecoration(
                 border: OutlineInputBorder(),
                 hintText: "Masukkan Berat Barang",
               ),
 
               // DIPANGGIL SETIAP USER MENGETIK ANGKA
-              onChanged: (value) => BeratC.ubahBerat(value),
+              onChanged: (value) {
+                BeratC.ubahBerat(value);
+              } 
             ),
           ),
 
-          const SizedBox(width: 9),
+           SizedBox(width: 9),
 
 
           // =========================
@@ -58,10 +63,16 @@ class BeratBarang extends StatelessWidget {
               // satuan awal
               selectedItem: "gram",
 
+
               // DIPANGGIL SAAT USER GANTI SATUAN
               onChanged: (value) {
                 if (value != null) {
                   BeratC.ubahSatuan(value);
+                  print(BeratC.beratBarang);
+                  kurirC.showButtonOngkir();
+                  
+                }else if (value == null) {
+                 BeratC.beratBarang = 0;
                 }
               },
 

@@ -2,22 +2,22 @@ name: case_ongkir_getx
 version: 1.0.0+1
 publish_to: none
 description: A new Flutter project.
-environment: 
+environment:
   sdk: ^3.9.2
 
-dependencies: 
+dependencies:
   cupertino_icons: ^1.0.8
+  dropdown_search: 5.0.6
+  flutter:
+    sdk: flutter
+  flutter_launcher_icons: ^0.14.4
   get: 4.7.3
   http: 1.6.0
-  dropdown_search: 5.0.6
-  flutter: 
-    sdk: flutter
 
-dev_dependencies: 
+dev_dependencies:
   flutter_lints: ^5.0.0
-  flutter_test: 
+  flutter_test:
     sdk: flutter
 
-flutter: 
+flutter:
   uses-material-design: true
-

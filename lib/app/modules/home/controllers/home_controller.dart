@@ -16,7 +16,7 @@ class HomeController extends GetxController {
         //var untuk http get
         Uri.parse(url),
         headers: {
-          "key": "MLTwqSd1af8061b9d90b70a0FDT6g0kV",
+          "key": "lIpCJXoV4c53a0293d23da868x9tXn3e",
         }, //header untuk api key(butuh di api raja ongkir)
       );
       if (response.statusCode == 200) {

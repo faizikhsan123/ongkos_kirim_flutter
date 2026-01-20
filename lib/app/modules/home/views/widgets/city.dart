@@ -6,14 +6,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class DropdownKota extends StatelessWidget {
-  DropdownKota({Key? key,required this.tipe}) : super(key: key);  //menambahkan constructor tipe
+  DropdownKota({Key? key, required this.tipe})
+    : super(key: key); //menambahkan constructor tipe
 
+  final String tipe; //menambahkan variabel tipe
 
- final String tipe; //menambahkan variabel tipe
-
-final cityC = Get.find<CityController>();
-final homeC = Get.find<HomeController>();
-
+  final cityC = Get.find<CityController>();
+  final homeC = Get.find<HomeController>();
 
   @override
   Widget build(BuildContext context) {
@@ -27,10 +26,25 @@ final homeC = Get.find<HomeController>();
         itemAsString: (City p) => "${p.name} (${p.id})",
 
         onChanged: (City? value) {
-          if (value != null) {}
+          if (value != null) {
+            if (tipe == 'asal') { 
+             cityC.idKotaAsalDarivalue.value = value.id; //ini untuk menangkap dari id kotaasal yg dipilih
+             cityC.nameKotaAsalDarivalue.value = value.name; //ini untuk menangkap dari name kotaasal yg dipilih
+
+            }
+            if (tipe == 'tujuan') { 
+             cityC.idKotaTujuanDarivalue.value = value.id; //ini untuk menangkap dari id kotatujuan yg dipilih
+             cityC.nameKotaTujuanDarivalue.value = value.name; //ini untuk menangkap dari name kotatujuan yg dipilih
+            
+            }
+          }
+
+      
         },
 
-          clearButtonProps: ClearButtonProps(isVisible: true), //menambahkan tombol clear
+        clearButtonProps: ClearButtonProps(
+          isVisible: true,
+        ),
 
         popupProps: PopupProps.menu(
           showSearchBox: true,
@@ -46,7 +60,9 @@ final homeC = Get.find<HomeController>();
 
         dropdownDecoratorProps: DropDownDecoratorProps(
           dropdownSearchDecoration: InputDecoration(
-            hintText: tipe == 'asal' ? 'Kota Asal' : 'Kota Tujuan', //jika tipe = asal maka tampilkan "Pilih kota Asal", jika tipe = tujuan maka tampilkan "Pilih kota Tujuan"
+            hintText: tipe == 'asal'
+                ? 'Kota Asal'
+                : 'Kota Tujuan', 
             border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
           ),
         ),
